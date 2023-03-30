@@ -1,3 +1,9 @@
+import open3d as o3d
+import argparse
+import os.path
+import numpy as np
+import trimesh
+
 def bat_mesh_subdivide():
     parser = argparse.ArgumentParser(description='mesh subdivide help document，同时执行loop和midpoint')
     parser.add_argument('-i', '--input_mesh_dir', type=str, help='输入mesh的目录，里面的mesh全部会subdivide')
