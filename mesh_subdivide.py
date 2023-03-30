@@ -64,22 +64,16 @@ def mesh_subdivide(input_path, output_path, iters = 2, subdivide_method = 'midpo
     elif subdivide_method == 'butterfly':
         output_mesh_name = filename[:-4] + '_btf' + str(iters) + '.obj'
         output_mesh_path = os.path.join(output_path, output_mesh_name)
-        btf_cmd = '/work/Users/zhuzhiwei/SubdivisionSurfaces-master/subdivide ' +\
+        btf_cmd = '../subdivide ' +\
                    input_path + ' ' + output_mesh_path + ' butterfly ' + str(iters)
         os.system(btf_cmd)
     elif subdivide_method == 'modified_butterfly':
         output_mesh_name = filename[:-4] + '_mbtf' + str(iters) + '.obj'
         output_mesh_path = os.path.join(output_path, output_mesh_name)
-        mbtf_cmd = '/work/Users/zhuzhiwei/SubdivisionSurfaces-master/subdivide ' + \
+        mbtf_cmd = '../subdivide ' + \
                    input_path + ' ' + output_mesh_path + ' modified_butterfly ' + str(iters)
         os.system(mbtf_cmd)
-    elif subdivide_method == 'neural_subdiv':
-        output_mesh_name = filename[:-4] + '_nrsd' + str(iters) + '.obj'
-        output_mesh_path = os.path.join(output_path, output_mesh_name)
-        nrsd_cmd = '/work/Users/zhuzhiwei/anaconda3/envs/mesh_subdiv/bin/python ' \
-                   '/work/Users/zhuzhiwei/neuralSubdiv-master/zzwtest.py ' \
-                   '/work/Users/zhuzhiwei/neuralSubdiv-master/jobs/net_cartoon_elephant/ ' + \
-                   input_path + ' ' + output_mesh_path + ' ' + str(iters)
-        os.system(nrsd_cmd)
-        mesh_scale(input_path, output_mesh_path)
+    else:
+        print('Error: invalid subdivide method: ',subdivide_method)
+        exit(-1)
     return output_mesh_path
